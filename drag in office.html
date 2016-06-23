@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <!--[if lt IE 9]>
+    <script src="html5shiv.min.js" type="text/javascript"></script>
+    <script src="excanvas.js" type="text/javascript"></script>
+    <![endif]-->
+	<script src="jquery-1.8.0.js"></script>
+    <script>
+    document.createElement("myHero");
+    </script>
+
+</head>
+<body>
+<div id="myCanvas" class="canvas">英雄</div>
+<!--[if IE 8]>
+<script>
+var canvas = document.getElementById("myCanvas");
+canvas.width = 200;
+canvas.height = 200;
+</script>
+ <![endif]-->
+<script>
+var canvas = document.getElementById("myCanvas");
+canvas.onmousedown = drag;
+
+function drag(event){	
+	event = event || window.event;
+	var disX = event.clientX - canvas.offsetLeft;
+	var disY = event.clientY - canvas.offsetTop;
+
+	canvas.onmousemove = function (event){
+		event = event || window.event;	
+			var T = event.clientY - disY;
+			var L = event.clientX - disX;
+			var windowM = document.body.clientWidth || document.documentElement.clientWidth;
+			var windowH = document.documentElement.clientHeight || document.body.clientHeight;
+			if(T < 1){
+				T=0;
+				}else if(T > windowH - canvas.offsetHeight){
+					T = windowH - canvas.offsetHeight;}
+			if(L < 1){
+				L = 0;
+				}else if(L > windowM - canvas.offsetWidth){
+					L = windowM - canvas.offsetWidth;}
+			canvas.style.top = T+"px"
+			canvas.style.left = L+"px";
+			};
+	
+}
+
+
+
+function arc(){
+	var ctx = canvas.getContext("2d");
+ctx.fillStyle="#FF0000";
+ctx.fillRect(0,0,150,75);
+ };
+
+</script>   
+<myHero>新英雄</myHero>
+<input type="button" value="huayuan" onClick="arc()">
+</body>
+</html>
