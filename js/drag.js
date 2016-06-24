@@ -17,7 +17,7 @@ function drag(){
 	oTitle.onmousedown = fnDown;
 	oTitle.onmouseup = fnUp;	
 	closeBtn.onclick = fClose;
-	loginState.onmousedown = changeState; //µã»÷ÇÐ»»×´Ì¬
+	loginState.onclick = changeState; //µã»÷ÇÐ»»×´Ì¬
 	}
 function fnUp(){
 	document.onmousemove = null;
@@ -50,4 +50,9 @@ function fClose(){
 	document.getElementById("loginPanel").style.display = "none";
 	}
 
-	
+function changeState(){
+	document.getElementById("loginStatePanel").style.display = "block";
+	var stateP = document.getElementById("loginStatePanel");
+	var states = stateP.childNodes;
+	alert(states[0].nodeName);
+}
