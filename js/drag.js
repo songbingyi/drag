@@ -14,10 +14,37 @@ function drag(){
 	var oTitle = getByClass('login_logo_webqq','loginPanel')[0];
 	var closeBtn = document.getElementById("ui_boxyClose");
 	var loginState = document.getElementById("loginState");
+	var lis = document.getElementsByTagName("li");
+	var stateText = document.getElementById("login2qq_state_txt");
 	oTitle.onmousedown = fnDown;
 	oTitle.onmouseup = fnUp;	
 	closeBtn.onclick = fClose;
-	loginState.onmousedown = changeState; //����л�״̬
+	loginState.onclick = changeState; 
+	//鼠标滑过、点击、离开状态列表时 
+	for(var i=0;i<lis.length;i++){
+		lis[i].onmouseover = function(){
+			this.style.backgroundColor = "#567";
+			}
+		lis[i].onmouseout = function(){
+			this.style.backgroundColor = "";
+			}
+		lis[i].onclick = function(e){
+
+			var id = this.id;
+			stateText.innerHTML = getByClass('stateSelect_text',id)[0].innerHTML;
+			document.getElementById("loginStateShow").className = "login-state-show"+" "+id;
+			document.getElementById("loginStatePanel").style.display = "none";
+			e = e || window.event;
+			if(e.stopPropagation){
+				e.stopPropagation();
+			}else{
+				e.cancelBubble = true;}				
+			}
+
+		}
+	document.onclick = function(){
+		document.getElementById("loginStatePanel").style.display = "none";
+		}
 	}
 function fnUp(){
 	document.onmousemove = null;
@@ -49,5 +76,12 @@ function fnDown(event){
 function fClose(){
 	document.getElementById("loginPanel").style.display = "none";
 	}
-
+function changeState(e){
+	e = e || window.event;
+	if(e.stopPropagation){
+	e.stopPropagation();
+	}else{
+	e.cancelBubble = true;}		
+	document.getElementById("loginStatePanel").style.display = "block";
 	
+	}
