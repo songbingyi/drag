@@ -81,7 +81,7 @@ function changeState(e){
 	if(e.stopPropagation){
 	e.stopPropagation();
 	}else{
-	e.cancelBubble = true;}		
+	e.cancelBubble = true;}	;	
 	document.getElementById("loginStatePanel").style.display = "block";
 	
 	}
